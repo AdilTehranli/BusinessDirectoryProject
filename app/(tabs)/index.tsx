@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'green',
     gap: 8,
   },
   stepContainer: {
