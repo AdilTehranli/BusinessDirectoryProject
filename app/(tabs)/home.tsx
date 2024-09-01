@@ -5,7 +5,7 @@ export default function home() {
   return (
     <View>
       <Text
-        style={{fontSize:40,fontFamily:'OutfitBold'}}
+        style={{fontSize:40,fontFamily:'OutfitRegular',margin:10}}
       >Hello</Text>
     </View>
   )
