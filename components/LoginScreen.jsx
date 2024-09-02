@@ -4,17 +4,17 @@ import { Colors } from "@/constants/Colors";
 import Login from "../assets/images/login.png";
 import * as WebBrowser from "expo-web-browser";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
-import { use0Auth } from "@clerk/clerk-expo";
+import { useOAuth } from "@clerk/clerk-expo";
 
 WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen() {
   useWarmUpBrowser();
 
-  const { startAuthFlow } = use0Auth({ strategy: "oauth_google" });
+  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
   const onPress = React.useCallback(async () => {
     try {
       const { createdSessionId, signIn, signUp, setActive } =
-        await startAuthFlow();
+        await startOAuthFlow();
       if (createdSessionId) {
         setActive({ session: createdSessionId });
       } else {
