@@ -5,6 +5,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Colors } from "./../../constants/Colors";
+import Ionicons from '@expo/vector-icons/Ionicons';
 export default function _layout() {
   return (
     <Tabs screenOptions={{ headerShown: false,tabBarActiveTintColor:Colors.PRIMARY  }}>
@@ -22,7 +23,7 @@ export default function _layout() {
         options={{
           tabBarLabel: "Explore",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="explore" size={24} color={color} />
+            <AntDesign name="search1" size={24} color={color} />
           ),
         }}
       />
@@ -31,7 +32,7 @@ export default function _layout() {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => (
-            <AntDesign name="profile" size={24} color={color} />
+            <Ionicons name="people-circle-outline" size={24} color={color} />
           ),
         }}
       />
