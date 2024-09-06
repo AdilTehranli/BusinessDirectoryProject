@@ -43,6 +43,7 @@ export default function BusinessListByCategory() {
           renderItem={({ item, index }) => (
             <BusinessListCard business={item} key={index} />
           )}
+          
         />
       ) : (
         <Text style={{
