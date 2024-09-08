@@ -1,10 +1,51 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useLocalSearchParams } from "expo-router";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/configs/FirebaseConfig";
+import { Colors } from "@/constants/Colors";
+import Intro from "../../components/BusinessDetail/Intro";
+import ActionButton from "../../components/BusinessDetail/ActionButton";
+import About from "../../components/BusinessDetail/About";
 
-export default function () {
+
+export default function BusinessDetail() {
+  const { businessid } = useLocalSearchParams();
+  const [business, setBusiness] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    GetBusinessDetailById();
+  }, []);
+
+  const GetBusinessDetailById = async () => {
+    setLoading(true);
+    const docRef = doc(db, "BusinessList", businessid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setBusiness(docSnap.data());
+      setLoading(false);
+    } else {
+      console.log("No such element");
+    }
+  };
   return (
     <View>
-      <Text></Text>
+      {loading ? (
+        <ActivityIndicator
+        size={'large'}
+        color={Colors.PRIMARY}
+        style={{
+            marginTop:'60%'
+        }}
+        />
+      ) : (
+        <View>
+            <Intro business={business}/>
+            <ActionButton business={business}/>
+            <About business={business}/>
+        </View>
+      )}
     </View>
-  )
+  );
 }
