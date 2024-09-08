@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { doc, getDoc } from "firebase/firestore";
@@ -7,6 +7,7 @@ import { Colors } from "@/constants/Colors";
 import Intro from "../../components/BusinessDetail/Intro";
 import ActionButton from "../../components/BusinessDetail/ActionButton";
 import About from "../../components/BusinessDetail/About";
+import Reviews from "../../components/BusinessDetail/Reviews";
 
 
 export default function BusinessDetail() {
@@ -30,7 +31,7 @@ export default function BusinessDetail() {
     }
   };
   return (
-    <View>
+    <ScrollView>
       {loading ? (
         <ActivityIndicator
         size={'large'}
@@ -44,8 +45,9 @@ export default function BusinessDetail() {
             <Intro business={business}/>
             <ActionButton business={business}/>
             <About business={business}/>
+            <Reviews business={business}/>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";
@@ -39,7 +39,7 @@ export default function BusinessListByCategory() {
   };
 
   return (
-    <View>
+    <ScrollView>
       {businessList?.length > 0 && loading == false ? (
         <FlatList
           refreshing={loading}
@@ -68,6 +68,6 @@ export default function BusinessListByCategory() {
             fontFamily:'OutfitBold'
         }}>Nothing Product</Text>
       )}
-    </View>
+    </ScrollView>
   );
 }

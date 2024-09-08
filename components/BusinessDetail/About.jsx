@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 
 export default function About({business}) {
   return (
-    <View
+    <ScrollView
+
     style={{
         padding:20,
         backgroundColor:'#fff'
@@ -20,6 +21,6 @@ export default function About({business}) {
         lineHeight:25
       }}
       >{business.about}</Text>
-    </View>
+    </ScrollView>
   )
 }

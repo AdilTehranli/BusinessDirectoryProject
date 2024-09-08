@@ -7,7 +7,7 @@ export default function ActionButton({ business }) {
       id: 1,
       name: "Call",
       icon: require("../../assets/images/call.png"),
-      url: 'tel' + business.contact,
+      url: 'tel:' + business.contact,
     },
     {
       id: 2,
