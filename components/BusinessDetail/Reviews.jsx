@@ -1,13 +1,39 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 import React, { useState } from "react";
 import { Rating } from "react-native-ratings";
 import { Colors } from "@/constants/Colors";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "@/configs/FirebaseConfig";
+// import { useUser } from '@clerk/clerk-react'
 
-export default function Reviews() {
+export default function Reviews({ business }) {
   const [rating, setRating] = useState(4);
+  const [userInput, setUserInput] = useState();
+  // const { user } = useUser();
+
+  const onSubmit = async () => {
+    const docRef = doc(db, "BusinessList", business.id);
+    await updateDoc(docRef,{
+      reviews: arrayUnion({
+        rating: rating,
+        comment: userInput,
+        // userName: user?.fullName,
+        // userImage: user?.imageUrl,
+      }),
+    });
+
+    ToastAndroid.show("Comment added succsesfuly", ToastAndroid.BOTTOM);
+  };
 
   return (
     <View
+    
       style={{
         backgroundColor: "#fff",
         padding: 20,
@@ -32,6 +58,7 @@ export default function Reviews() {
         />
         <TextInput
           numberOfLines={4}
+          onChangeText={(value) => setUserInput(value)}
           style={{
             padding: 10,
             borderColor: Colors.GRAY,
@@ -42,6 +69,8 @@ export default function Reviews() {
           placeholder="Write your comment"
         />
         <TouchableOpacity
+          disabled={!userInput}
+          onPress={() => onSubmit()}
           style={{
             borderRadius: 20,
           }}
@@ -58,6 +87,14 @@ export default function Reviews() {
             Submit
           </Text>
         </TouchableOpacity>
+      </View>
+
+      <View>
+        {business?.reviews?.map((item,index)=>(
+          <View>
+            <Text>{item.comment}</Text>
+          </View>
+        ))}
       </View>
     </View>
   );
