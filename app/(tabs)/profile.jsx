@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import ProfileIntro from '../../components/Profile/ProfileIntro'
+import MenuList from '../../components/Profile/MenuList'
 
 export default function profile() {
   return (
@@ -16,6 +17,7 @@ export default function profile() {
       }}
       >Profile</Text>
       <ProfileIntro/>
+      <MenuList/>
     </View>
   )
 }
