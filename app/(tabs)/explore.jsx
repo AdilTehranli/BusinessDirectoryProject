@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
@@ -24,7 +24,7 @@ export default function explore() {
     })
   };
   return (
-    <View
+    <ScrollView
       style={{
         padding: 20,
       }}
@@ -48,7 +48,7 @@ export default function explore() {
       <ExploreBusinessList 
       businessList={businessList}
       />
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
