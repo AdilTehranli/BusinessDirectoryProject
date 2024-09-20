@@ -58,7 +58,7 @@ export default function AddBusiness() {
   };
 
   const onAddNewBusiness = async () =>{
-    const filename = Date.now().toString()
+    const filename = Date.now().toString()+".jpg"
     const resp = await fetch(image)
     const blob = await resp.blob()
 
