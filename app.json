@@ -19,7 +19,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.tehranli.businessdirectory"
     },
     "web": {
       "bundler": "metro",
@@ -35,9 +39,13 @@
         }
       ]
     ],
-    
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a17fc94e-df42-46ae-9ca6-8a9cc483de2c"
+      }
     }
   }
 }
