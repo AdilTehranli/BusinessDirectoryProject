@@ -46,7 +46,7 @@ export default function AddBusiness() {
     const querySnapShot = await getDocs(q);
 
     querySnapShot.forEach((doc) => {
-      console.log(doc.data());
+      // console.log(doc.data());
       setCategoryList((prev) => [
         ...prev,
         {

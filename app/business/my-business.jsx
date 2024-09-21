@@ -6,12 +6,14 @@ import { db } from "../../configs/FirebaseConfig";
 
 export default function MyBusiness() {
   const [businessList, setBusinessList] = useState([]);
+  const [loading,setLoading] = useState(false)
 
   useEffect(() => {
     GetBusinessList();
   }, []);
 
   const GetBusinessList = async () => {
+    setLoading(true)
     setBusinessList([]);
     const q = query(collection(db, "BusinessList"));
     const querySnapshot = await getDocs(q);
@@ -20,6 +22,7 @@ export default function MyBusiness() {
 
       // console.log(doc.data());
     });
+    setLoading(false)
   };
   return (
     <View
@@ -38,6 +41,8 @@ export default function MyBusiness() {
 
     <FlatList
   data={businessList}
+  refreshing={loading}
+  onRefresh={GetBusinessList}
   renderItem={({ item, index }) => (
     <BusinessListCard business={item} key={index} />
   )}
