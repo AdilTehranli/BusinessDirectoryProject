@@ -3,13 +3,23 @@ import React, { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import BusinessListCard from "../../components/BusinessList/BusinessListCard";
 import { db } from "../../configs/FirebaseConfig";
+import { useNavigation } from "expo-router";
 
 export default function MyBusiness() {
   const [businessList, setBusinessList] = useState([]);
   const [loading,setLoading] = useState(false)
 
+  const navigation = useNavigation();
+
+
+
   useEffect(() => {
     GetBusinessList();
+
+    navigation.setOptions({
+      headerShown:true,
+      headerTitle: "My Business"
+    })
   }, []);
 
   const GetBusinessList = async () => {

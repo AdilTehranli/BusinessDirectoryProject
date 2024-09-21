@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList, Image, Share } from 'react-native'
 import React from 'react'
 import { Colors } from "@/constants/Colors";
 import { useRouter } from 'expo-router';
@@ -23,7 +23,7 @@ export default function MenuList() {
       id: 3,
       name: 'Share App',
       icon:require('../../assets/images/share_1.png'),
-      path:''
+      path:'share'
     },
     {
       id: 4,
@@ -35,7 +35,15 @@ export default function MenuList() {
   const router = useRouter();
 
   const onMenuClick = (item)=>{
+
+    if(item.path=='share'){
+      Share.share({
+        message: 'Check out this app',
+      })
+      return;
+    }
     router.push(item.path)
+
   }
 
   return (
