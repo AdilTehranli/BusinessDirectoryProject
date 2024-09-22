@@ -4,6 +4,7 @@ import Header from '../../components/Home/Header.jsx'
 import Slider from '../../components/Home/Slider.jsx'
 import Category from '../../components/Home/Category.jsx'
 import PopularBusiness from '../../components/Home/PopularBusiness.jsx'
+export { ErrorBoundary } from 'expo-router';
 export default function home() {
   return (
     <ScrollView>
